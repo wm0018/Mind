@@ -13,13 +13,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wu.demo.entity.LearnResource;
 import com.wu.demo.service.ILearnService;
 
 @Controller
-@RequestMapping("/home")
 @EnableAutoConfiguration
 public class HomeController {
 
@@ -29,7 +29,7 @@ public class HomeController {
 	private ILearnService learnService;
 	
 	@RequestMapping("/")
-	public ModelAndView jump(String page,String rows,String author,String title) {
+	public ModelAndView jump(@RequestParam(defaultValue="1") String page,@RequestParam(defaultValue="10")String rows,@RequestParam(defaultValue="")String author,@RequestParam(defaultValue="")String title) {
         Map<String, Object> para = new HashMap<>();
         para.put("page", page);
         para.put("rows", rows);
